@@ -17,16 +17,16 @@ rm(list=ls())
 graphics.off()
 
 library(here)
-setwd(here("data","spawner-recruit","raw","EA-river-level-SR-2023-update"))
+setwd(here("NCC-SR-assembly","EA-river-level-SR-2023-update"))
 
 # Installing packages #
-# install.packages("dpylr")
+# install.packages("tidyverse")
 # install.packages("reshape2")
 # install.packages("stringr")
 # install.packages("readxl")
 
 # Loading packages #
-library(dplyr)
+library(tidyverse)
 library(reshape2)
 library(stringr)
 library(readxl)

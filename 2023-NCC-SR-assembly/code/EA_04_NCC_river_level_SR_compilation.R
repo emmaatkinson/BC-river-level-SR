@@ -31,7 +31,7 @@ library(reshape2)
 library(stringr)
 library(here)
 
-setwd(here("data","spawner-recruit","raw","EA-river-level-SR-2023-update"))
+setwd(here("2023-NCC-SR-assembly","raw-data"))
 
 # --- Inputs --- #
 
@@ -274,7 +274,7 @@ compile_riverSR = function(esc, agebyCU, Ymax) {
 }
 
 # Write to file - phewf! #
-setwd(here("data","spawner-recruit","clean"))
+setwd(here("2023-NCC-SR-assembly","generated-data"))
 write.csv(compile_riverSR(esc, agebyCU, Ymax), paste("NCC_streams_river-level_SR_data_", Sys.Date(),".csv", sep=""), row.names = FALSE)
 
 
