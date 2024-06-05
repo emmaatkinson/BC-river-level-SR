@@ -49,5 +49,10 @@ po/*~
 rsconnect/
 
 # Specific large data files
-/SCFS-Area-12-assembly/Data-raw/
-/new-data/
+
+/code/SCFS-Area-12-assembly/Data-raw/
+/code/Ecofish-SCVI-assembly/Data/
+/code/Ecofish-SCVI-assembly/R_Output/
+/inputs/needs-processing/PSE_spawner_surveys_hatchery_score_2023-11-23.csv
+/inputs/processed-raw/PSF-SWP-cleaned-nuseds/data_output/
+/code/2024-NCC-SR-assembly/raw-data/all_areas_nuseds_cleaned_20240419.csv
