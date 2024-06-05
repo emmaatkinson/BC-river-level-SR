@@ -11,7 +11,7 @@ Brief description of each folder in this repository:
 
 `\code` contains materials (inputs, code, outputs) for previously assembled river-level SR data.
 
-`\inputs` contains *input* data (i.e., raw data sets in the format they were accessed or shared). As this is a working repository and the data assembly is ongoing, datasets awaiting integration are kept in `\to-process` and datasets that have been integrated are kept in `\received-raw`.
+`\inputs` contains input data (i.e., raw data sets in the format they were accessed or shared). As this is a working repository and the data assembly is ongoing, datasets awaiting integration are kept in `\to-process` and datasets that have been integrated are kept in `\received-raw`.
 
 `\outputs` contains `\final-river-level-SR-time-series` across all sources as well as diagnostic and summary figures in `\summary-figures`.
 
