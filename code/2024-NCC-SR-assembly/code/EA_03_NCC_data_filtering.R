@@ -31,8 +31,7 @@ library(reshape2)
 library(stringr)
 library(here)
 
-setwd(here("data","spawner-recruit","raw","EA-river-level-SR-2023-update"))
-
+setwd(here("code","2023-NCC-SR-assembly","raw-data"))
 # --- Inputs --- #
 
 # Read in data from NCC database #

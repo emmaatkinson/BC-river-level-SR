@@ -37,8 +37,8 @@ col2 <- wes_palette("Zissou1")[4]
 col3 <- wes_palette("Zissou1")[5]
 
 # --- Read in data --- #
-dat_full = read.csv("agebyCU_infilled_2023-03-21.csv", header=TRUE, stringsAsFactors = FALSE)
-trtc = read.csv("TRTCbyCU_2023-03-21.csv", header=TRUE, stringsAsFactors = FALSE)
+dat_full2 = read.csv("agebyCU_infilled_2023-03-21.csv", header=TRUE, stringsAsFactors = FALSE)
+trtc2 = read.csv("TRTCbyCU_2023-03-21.csv", header=TRUE, stringsAsFactors = FALSE)
 
 dat = dat_full[which(dat_full$SpeciesId %in% c("CM","CO","PKe","PKo")),]
 

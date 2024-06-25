@@ -26,13 +26,14 @@ library(reshape2)
 library(stringr)
 library(here)
 
-setwd(here("data","spawner-recruit","raw","EA-river-level-SR-2023-update"))
+setwd(here("code","2023-NCC-SR-assembly","raw-data"))
 
 # --- Inputs --- #
 
 # Read in data from NCC database #
 escape <- read.csv("escape_NCC_2023-03-21.csv", header=TRUE, stringsAsFactors = FALSE)
 agebyCU <- read.csv("agebyCU_infilled_2023-03-21.csv", header=TRUE, stringsAsFactors = FALSE)
+
 
 # PUT IT IN A FUNCTION
 clean_SR_dat <- function(escape, agebyCU) {
@@ -96,6 +97,7 @@ clean_SR_dat <- function(escape, agebyCU) {
       
       return(esc)
 }
+
 
 # Write to file for next step
 write.csv(clean_SR_dat(escape, agebyCU), paste("escape_NCC_",Sys.Date(),"_CLEAN.csv",sep=""), row.names = FALSE)
