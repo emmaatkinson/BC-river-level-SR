@@ -31,13 +31,14 @@ library(reshape2)
 library(stringr)
 library(here)
 
-setwd(here("2023-NCC-SR-assembly","raw-data"))
+setwd(here("code","2023-NCC-SR-assembly","raw-data"))
 
 # --- Inputs --- #
 
 # Read in data from NCC database #
 esc <- read.csv("escape_NCC_2023-04-19_CLEANED_FILTERED.csv", header=TRUE, stringsAsFactors = FALSE)
 agebyCU <- read.csv("agebyCU_NCC_2023-04-19_CLEANED_FILTERED.csv", header=TRUE, stringsAsFactors = FALSE)
+
 
 species <- unique(esc$SPP)
 species2 <- unique(agebyCU$SpeciesId)

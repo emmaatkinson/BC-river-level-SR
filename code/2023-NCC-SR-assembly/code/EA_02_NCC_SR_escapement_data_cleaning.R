@@ -84,7 +84,7 @@ clean_SR_dat <- function(escape, agebyCU) {
       check <- check[-1,]
       
       # Filter out known duplicate systems #
-      esc <- escape[!(escape$POP_ID == 51772),]
+      esc <- escape[(escape$POP_ID == 51772),]
       message(paste("Duplicate river-level systems removed, GFE_ID:", check$GFE_ID[1]))
       
       check = check[-(which(check$GFE_ID==968)),]

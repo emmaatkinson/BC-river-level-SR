@@ -31,25 +31,28 @@ library(reshape2)
 library(stringr)
 library(here)
 
-setwd(here("2023-NCC-SR-assembly","raw-data"))
+setwd(here("code","2023-NCC-SR-assembly","raw-data"))
 
 # --- Inputs --- #
-
-# Read in data from NCC database #
 esc <- read.csv("escape_NCC_2023-04-19_CLEANED_FILTERED.csv", header=TRUE, stringsAsFactors = FALSE)
-agebyCU <- read.csv("agebyCU_NCC_2023-04-19_CLEANED_FILTERED.csv", header=TRUE, stringsAsFactors = FALSE)
 
-species <- unique(esc$SPP)
+old_names<-names(esc[,c(1:45)])
+names(esc)
+# Read in data from NCC database #
+esc <- read.csv("escape_NCC_2024-07-11_CLEANED_FILTERED.csv", header=TRUE, stringsAsFactors = FALSE)
+agebyCU <- read.csv("agebyCU_NCC_2024-07-11_CLEANED_FILTERED.csv", header=TRUE, stringsAsFactors = FALSE)
+
+species <- unique(esc$species_acronym_ncc)
 species2 <- unique(agebyCU$SpeciesId)
 
 # --- PART 2: Generate stream-level estimates for returns and recruits (indexed by brood year) --- #
 
-Ymax <- 2021 # set this to most recent year with escapement data - will need to change as data is updated
+Ymax <- 2022 # set this to most recent year with escapement data - will need to change as data is updated
 
 # SET UP IN A FUNCTION
 compile_riverSR = function(esc, agebyCU, Ymax) {
   
-        ny <- length(1950:Ymax) # Set time spans and years to use for indexing 
+        ny <- length(1920:Ymax) # Set time spans and years to use for indexing 
         Ymax_recruits <- max(agebyCU$BroodYear, na.rm=TRUE) # set this to most recent year in age table
         
         # Set up destination dataframe for outputs 
@@ -86,7 +89,7 @@ compile_riverSR = function(esc, agebyCU, Ymax) {
             spp1 = species[k] # species code for escapement dataframe
             spp2 = species2[k] # species code for age dataframe
             
-            escape <- esc[which(esc$SPP==spp1),] # subset for species k
+            escape <- esc[which(esc$species_acronym_ncc==spp1),] # subset for species k
             
             # EA NOTE (2023-03-21): The column specs for subsetting this dataframe are a bit annoying. The version of the escapement spreadsheet
             # I ended up using for this compilation had different dimensions from the one included in the big multi-sheet file that is usually 
@@ -94,7 +97,7 @@ compile_riverSR = function(esc, agebyCU, Ymax) {
             # Eric sent me but have also left the line of code that would usually work for the output of the run reconstruction. 
             escape <- escape[,c(1:45, 76:(76+ny-1))] # subset for selected range of years (should be robust if you change 'ny')
             #escape <- escape[,c(1:59, 82:(82+ny-1))] # subset for selected range of years (should be robust if you change 'ny')
-            
+            old_names<-names(esc[,c(1:45)])
             # Subset age data for species k
             ageCU <- agebyCU[which(agebyCU$SpeciesId==spp2),]
             

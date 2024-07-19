@@ -38,6 +38,8 @@ setwd(here("code","2023-NCC-SR-assembly","raw-data"))
 esc <- read.csv("escape_NCC_2023-03-21_CLEAN.csv", header=TRUE, stringsAsFactors = FALSE)
 agebyCU <- read.csv("agebyCU_infilled_2023-03-21.csv", header=TRUE, stringsAsFactors = FALSE)
 
+setwd(here("code","2024-NCC-SR-assembly","raw-data"))
+
 species <- unique(esc$SPP)
 species2 <- c(unique(agebyCU$SpeciesId), "SX")
 
@@ -107,7 +109,7 @@ agebyCU_2 = agebyCU[(which(!(agebyCU$CU_index_2 %in% c("CM-17","CM-16","CO-22"))
 # We are not using any data from Areas 1-5 due to lack of clarity on methods used by LGL for run reconstructions #
 esc_2 = esc[which(esc$Area %in% c("6","7","8","9","10")),]
 
-# We are not using any data for the Bella Coola chum/coho CUs because of enhancement (chum) 
+ # We are not using any data for the Bella Coola chum/coho CUs because of enhancement (chum) 
 # and lack of monitoring (coho).
 esc_3 = esc_2[which(!(esc_2$CU_findex %in% c("CM-17","CM-16","CO-22"))),]
 

@@ -17,7 +17,7 @@ rm(list=ls())
 graphics.off()
 
 library(here)
-setwd(here("data","spawner-recruit","clean"))
+
 
 # Installing packages #
 # install.packages("dpylr")
@@ -40,13 +40,32 @@ col2 <- wes_palette("Zissou1")[4]
 col3 <- wes_palette("Zissou1")[5]
 
 # --- Read in data --- #
-dat = read.csv("NCC_streams_river-level_SR_data_2023-04-19.csv", header=TRUE, stringsAsFactors = FALSE)
+setwd(here("code","2023-NCC-SR-assembly","raw-data"))
+dat1 = read.csv("NCC_streams_river-level_SR_data_2023-12-19.csv", header=TRUE, stringsAsFactors = FALSE)
+esc=read.csv("NuSEDS_escapement_data_collated_20221101.csv")
+sum(!is.na(esc[which(esc$GFE_ID %in% unique(dat$GFE_ID)),76:ncol(esc)]))
+
+setwd(here("code","2024-NCC-SR-assembly","generated data"))
+dat = read.csv("NCC_streams_river-level_SR_data_2024-07-18.csv", header=TRUE, stringsAsFactors = FALSE)
+
+
+dat1$pop = paste(dat1$Species, dat1$GFE_ID, sep="-")
+dat$pop = paste(dat$species_acronym_ncc, dat$GFE_ID, sep="-")
+
 
 # make a unique population ID for plotting
 dat$pop = paste(dat$Species, dat$GFE_ID, sep="-")
 
 # set directory for where to save plots
-setwd(here("data","spawner-recruit","clean","SR-diagnostic-plots"))
+setwd(here("code","2024-NCC-SR-assembly","JH_NCC_update_figures"))
+
+
+
+
+
+
+
+
 
 # set test GFE_ID
 #g = "CM-1010"
