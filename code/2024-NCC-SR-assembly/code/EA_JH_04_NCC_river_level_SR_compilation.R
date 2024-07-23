@@ -51,11 +51,13 @@ Ymax <- 2021 # set this to most recent year with escapement data - will need to 
 compile_riverSR = function(esc, agebyCU, Ymax) {
   
         ny <- length(1920:Ymax) # Set time spans and years to use for indexing 
-        Ymax_recruits <- max(agebyCU$BroodYear, na.rm=TRUE) # set this to most recent year in age table
+        
+      Ymax_recruits <- max(agebyCU$BroodYear, na.rm=TRUE) # set this to most recent year in age table
 
         # Big loop starts here - will calculate returns and recruits for each species/CU/brood year #  
         for (k in 1:length(species)){ # for each species
-        
+        # k=1 #set k to test loop
+          
             spp1 = species[k] # species code for escapement dataframe
             spp2 = species2[k] # species code for age dataframe
             
@@ -89,7 +91,7 @@ compile_riverSR = function(esc, agebyCU, Ymax) {
             Total_ER <- as.numeric(rep(NA, nrow(data))) # set up vector to store ER estimates
             
             for (i in 1:nrow(data)){ # This takes a minute 
-            #i <- 120 # set for testing loop  
+            #i <-340 # set for testing loop  
               
               cu <- data$CU_findex[i]
               y <- data$Year[i]
