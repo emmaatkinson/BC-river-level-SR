@@ -35,11 +35,19 @@ library(here)
 
 # Read in data from NCC database #
 
-setwd(here("code","2024-NCC-SR-assembly","raw-data"))
+setwd(here("code","2023-NCC-SR-assembly","generated-data"))
 esc<- read.csv("escape_NCC_2024-07-04_CLEAN.csv", header=TRUE, stringsAsFactors = FALSE)
 rivers <- read.csv("conservation_unit_system_sites_cleaned_20240419.csv")
 
-#adding CU info to data
+
+dat = read.csv("NCC_streams_river-level_SR_data_2024-07-19.csv", header=TRUE, stringsAsFactors = FALSE)
+dat1= read.csv("NCC_streams_river-level_SR_data_2023-12-19.csv")
+
+dat1[which(dat1$GFE_ID==dat$GFE_ID[1000]),]$Spawners
+dat[which(dat$GFE_ID==dat$GFE_ID[1000]),]$Returns
+
+
+S#adding CU info to data
 nrows<-nrow(esc)
 
 esc$CU_findex<-rep(0,nrows)

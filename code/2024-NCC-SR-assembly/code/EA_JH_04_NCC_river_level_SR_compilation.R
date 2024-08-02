@@ -43,6 +43,8 @@ agebyCU <- read.csv("agebyCU_NCC_2024-07-11_CLEANED_FILTERED.csv", header=TRUE, 
 species <- sort(unique(esc$species_acronym_ncc))
 species2 <- sort(unique(agebyCU$SpeciesId))
 
+
+esc$Returns
 # --- PART 2: Generate stream-level estimates for returns and recruits (indexed by brood year) --- #
 
 Ymax <- 2021 # set this to most recent year with escapement data - will need to change as data is updated
@@ -103,7 +105,7 @@ compile_riverSR = function(esc, agebyCU, Ymax) {
               else if (length(ER_CU[ER_CU$CU==cu & ER_CU$BroodYear==y,]$Total.ER) > 0 &
                        !is.na(length(ER_CU[ER_CU$CU==cu & ER_CU$BroodYear==y,]$Total.ER))) {
                  
-                Returns[i] = data$Spawners[i]/(1-ER_CU[ER_CU$CU==cu & ER_CU$BroodYear==y,]$Total.ER)
+                Returns[i] = data$MAX_ESTIMATE[i]/(1-ER_CU[ER_CU$CU==cu & ER_CU$BroodYear==y,]$Total.ER)
                 Total_ER[i] = ER_CU[ER_CU$CU==cu & ER_CU$BroodYear==y,]$Total.ER
                 
                 }
@@ -201,4 +203,4 @@ compile_riverSR = function(esc, agebyCU, Ymax) {
 # Write to file - phewf! #
 setwd(here("code","2024-NCC-SR-assembly","generated data"))
 write.csv(compile_riverSR(esc, agebyCU, Ymax), paste("NCC_streams_river-level_SR_data_", Sys.Date(),".csv", sep=""), row.names = FALSE)
-new<-read.csv("NCC_streams_river-level_SR_data_2024-07-19.csv")
+

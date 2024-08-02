@@ -41,7 +41,7 @@ col3 <- wes_palette("Zissou1")[5]
 
 # --- Read in data --- #
 setwd(here("code","2024-NCC-SR-assembly","generated data"))
-dat = read.csv("NCC_streams_river-level_SR_data_2024-07-19.csv", header=TRUE, stringsAsFactors = FALSE)
+dat = read.csv("NCC_streams_river-level_SR_data_2024-07-23.csv", header=TRUE, stringsAsFactors = FALSE)
 
 # make a unique population ID for plotting
 dat$pop = paste(dat$species_acronym_ncc, dat$GFE_ID, sep="-")
@@ -51,6 +51,7 @@ setwd(here("code","2024-NCC-SR-assembly","JH_NCC_update_figures"))
 
 # set test GFE_ID
 #g = "CM-1010"
+dat$MAX_ESTIMATE
 
 for (g in unique(dat$pop)){
 
@@ -58,7 +59,7 @@ for (g in unique(dat$pop)){
     d = d[order(d$Year),]
     spp = d$species_acronym_ncc[1]
 
-  if (FALSE %in% is.na(d$Spawners)){ # don't plot if there aren't any data
+  if (FALSE %in% is.na(d$MAX_ESTIMATE)){ # don't plot if there aren't any data
     
     pdf(paste(Sys.Date(), g, "_stream_level_diagnostics.pdf", sep="_"), width=11, height=5, pointsize=12)
     par(mfrow=c(1,2),mar=c(4,4,1,2), oma=c(0,0,4,0))
@@ -68,13 +69,13 @@ for (g in unique(dat$pop)){
       if (FALSE %in% is.na(d$Recruits)) {
         ymax = 1.5*max(d$Recruits, na.rm=TRUE)
       } else {
-        ymax = 1.5*max(d$Spawners, na.rm=TRUE)
+        ymax = 1.5*max(d$MAX_ESTIMATE, na.rm=TRUE)
       }
     
       
       if (spp %in% c("CM","CO")){
-        plot(d$Year, d$Spawners, type="l", lwd=2, col=alpha(col1, 0.75), bty="n", xlab="Brood year", ylab="Numbers of fish", ylim=c(0,ymax))
-        points(d$Year, d$Spawners, pch=21, col=col1, bg=NA, cex=0.9)
+        plot(d$Year, d$MAX_ESTIMATE, type="l", lwd=2, col=alpha(col1, 0.75), bty="n", xlab="Brood year", ylab="Numbers of fish", ylim=c(0,ymax))
+        points(d$Year, d$MAX_ESTIMATE, pch=21, col=col1, bg=NA, cex=0.9)
         lines(d$Year, d$Recruits, type="l", lwd=3, col=alpha(col2, 0.75))
         points(d$Year, d$Recruits, pch=21, col=col2, bg=NA, cex=0.9)
         legend("topright", c("Spawners","Recruits"),
@@ -86,8 +87,8 @@ for (g in unique(dat$pop)){
         
         d = d[d$Year %% 2 == 0,]
         
-        plot(d$Year, d$Spawners, type="l", lwd=2, col=alpha(col1, 0.75), bty="n", xlab="Brood year", ylab="Numbers of fish", ylim=c(0,ymax))
-        points(d$Year, d$Spawners, pch=21, col=col1, bg=NA, cex=0.9)
+        plot(d$Year, d$MAX_ESTIMATE, type="l", lwd=2, col=alpha(col1, 0.75), bty="n", xlab="Brood year", ylab="Numbers of fish", ylim=c(0,ymax))
+        points(d$Year, d$MAX_ESTIMATE, pch=21, col=col1, bg=NA, cex=0.9)
         lines(d$Year, d$Recruits, type="l", lwd=3, col=alpha(col2, 0.75))
         points(d$Year, d$Recruits, pch=21, col=col2, bg=NA, cex=0.9)
         legend("topright", c("Spawners","Recruits"),
@@ -100,8 +101,8 @@ for (g in unique(dat$pop)){
       
       d = d[d$BroodYear %% 2 != 0,]
       
-      plot(d$Year, d$Spawners, type="l", lwd=2, col=alpha(col1, 0.75), bty="n", xlab="Brood year", ylab="Numbers of fish", ylim=c(0,ymax))
-      points(d$Year, d$Spawners, pch=21, col=col1, bg=NA, cex=0.9)
+      plot(d$Year, d$MAX_ESTIMATE, type="l", lwd=2, col=alpha(col1, 0.75), bty="n", xlab="Brood year", ylab="Numbers of fish", ylim=c(0,ymax))
+      points(d$Year, d$MAX_ESTIMATE, pch=21, col=col1, bg=NA, cex=0.9)
       lines(d$Year, d$Recruits, type="l", lwd=3, col=alpha(col2, 0.75))
       points(d$Year, d$Recruits, pch=21, col=col2, bg=NA, cex=0.9)
       legend("topright", c("Spawners","Recruits"),
